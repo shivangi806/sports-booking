@@ -37,5 +37,7 @@
     3.npm start
 
 ### The website will run at https://sports-booking-frontend.onrender.com/
+### Report : https://docs.google.com/document/d/1V1YUNH-pUj4g2Y3Q56J8sCtgMknNCbNMarVA-gU4-UI/edit?usp=sharing
+
 
 

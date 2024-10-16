@@ -17,13 +17,34 @@ const centresData = {
       Cricket: ["Ground 1", "Ground 2"],
       Basketball: ["Court 1", "Court 2"]
     }
+  },
+  kadubeesanahalli: {
+    sports: {
+      Badminton: ["Court 1", "Court 2", "Court 3"],
+      Cricket: ["Ground 1", "Ground 2"],
+      Basketball: ["Court 1", "Court 2"]
+    }
+  },
+  Marathahalli: {
+    sports: {
+      Badminton: ["Court 1", "Court 2", "Court 3"],
+      Cricket: ["Ground 1", "Ground 2"],
+      Basketball: ["Court 1", "Court 2"]
+    }
+  },
+  JP_Nagar: {
+    sports: {
+      Badminton: ["Court 1", "Court 2", "Court 3"],
+      Cricket: ["Ground 1", "Ground 2"],
+      Basketball: ["Court 1", "Court 2"]
+    }
   }
 };
 
 function Admin() {
   const defaultCentre = "Indiranagar";
   const defaultSport = "Badminton";
-  const defaultDate = new Date().toISOString().split('T')[0];
+  const defaultDate = new Date().toLocaleDateString('en-CA');
 
   const [bookings, setBookings] = useState([]);
   const [selectedCentre, setSelectedCentre] = useState(defaultCentre);
@@ -85,25 +106,47 @@ function Admin() {
     }
   };
 
+
+  const handleMakeAvailable = async (bookingId) => {
+    try {
+      // Make a DELETE request to remove the booking
+      await axios.delete(`http://localhost:5000/api/bookings/${bookingId}`);
+      
+      // Remove the booking from the state after deletion
+      setBookings(bookings.filter(b => b._id !== bookingId));
+    } catch (err) {
+      console.error('Error making slot available:', err);
+    }
+  };
+
+  
+
+
   // Render bookings in the table
   const renderBooking = (court, time) => {
     const booking = bookings.find(b => b.court === court && b.timeSlot === time);
-
+  
     if (booking) {
       return (
-        <div className="booking-slot bg-warning">
+        <div className="booking-slot bg-success">
           {booking.user} <br />
           {booking.status}
+          <br />
+          {/* Add a "Make Available" button */}
+          <button className="btn btn-sm btn-danger mt-2" onClick={() => handleMakeAvailable(booking._id)}>
+            Make Available
+          </button>
         </div>
       );
     }
-
+  
     return (
       <div className="booking-slot" onClick={() => handleNewBooking(court, time)}>
         <span className="text-muted">Available</span>
       </div>
     );
   };
+  
 
   return (
     <div className="container mt-5">

@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Get bookings for a specific centre, sport, and date
 router.get('/', async (req, res) => {
-    console.log("ggg",req.body);
+    // console.log("ggg",req.body);
   const { centre, sport, date } = req.query;
   try {
     const bookings = await Booking.find({ centre, sport, date });
@@ -33,8 +33,6 @@ router.post('/', async (req, res) => {
   });
   
   
-  
-
 // Make a slot available again (delete the booking)
 router.delete('/:id', async (req, res) => {
   try {

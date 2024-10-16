@@ -36,5 +36,6 @@
     2.npm install
     3.npm start
 
-### The frontend will run at http://localhost:3000.
+### The frontend will run at https://sports-booking-frontend.onrender.com/
+
 

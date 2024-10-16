@@ -65,7 +65,7 @@ function Admin() {
   // Fetch bookings from the backend
   const fetchBookings = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/bookings', {
+      const response = await axios.get('https://sports-booking.onrender.com/api/bookings', {
         params: { centre: selectedCentre, sport: selectedSport, date: selectedDate }
       });
       console.log('Fetched bookings:', response.data);  // Log fetched bookings
@@ -94,7 +94,7 @@ function Admin() {
       console.log("New Booking Data (POST):", newBooking);  // Log the new booking data
 
       try {
-        const response = await axios.post('http://localhost:5000/api/bookings', newBooking);
+        const response = await axios.post('https://sports-booking.onrender.com/api/bookings', newBooking);
         console.log('Backend Response:', response.data);  // Log the backend response
         setBookings([...bookings, response.data]);  // Add the new booking to the state
       } catch (err) {
@@ -110,7 +110,7 @@ function Admin() {
   const handleMakeAvailable = async (bookingId) => {
     try {
       // Make a DELETE request to remove the booking
-      await axios.delete(`http://localhost:5000/api/bookings/${bookingId}`);
+      await axios.delete(`https://sports-booking.onrender.com/api/bookings/${bookingId}`);
       
       // Remove the booking from the state after deletion
       setBookings(bookings.filter(b => b._id !== bookingId));

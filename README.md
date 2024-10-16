@@ -36,6 +36,6 @@
     2.npm install
     3.npm start
 
-### The frontend will run at https://sports-booking-frontend.onrender.com/
+### The website will run at https://sports-booking-frontend.onrender.com/
 
 
